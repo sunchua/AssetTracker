@@ -82,10 +82,14 @@ export class Items {
   }
 
   add(item: Item) {
+
+    this.database.
     this.items.push(item);
   }
 
   delete(item: Item) {
+
+    this.database.
     this.items.splice(this.items.indexOf(item), 1);
   }
 }
