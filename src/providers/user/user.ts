@@ -4,6 +4,10 @@ import { Injectable } from '@angular/core';
 
 import { Api } from '../api/api';
 
+import { Database } from '../database/database';
+
+import { ToastController, ToastOptions } from 'ionic-angular';
+
 /**
  * Most apps have the concept of a User. This is a simple provider
  * with stubs for login/signup/etc.
@@ -26,29 +30,56 @@ import { Api } from '../api/api';
 @Injectable()
 export class User {
   _user: any;
+  // database: Database;
 
-  constructor(public api: Api) { }
+  private toastOptions: ToastOptions;
+
+  constructor(public api: Api, public database: Database, private toast: ToastController) {  
+      // this.database = new Database();
+  }
+
+  // constructor(public database: Database) {}
 
   /**
    * Send a POST request to our login endpoint with the data
    * the user entered on the form.
    */
   login(accountInfo: any) {
-    let seq = this.api.post('login', accountInfo).share();
+    //let seq = this.api.post('login', accountInfo).share();
+    var count = 0;
 
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      } else {
-      }
-    }, err => {
-      console.error('ERROR', err);
-    });
+    // this.database.getDatabaseState().subscribe(rdy => {
 
-    return seq;
+    //   if(rdy){
+        count = this.database.loginUser(accountInfo);
+        console.log('count = ' + count);
+      // }
+    //})
+    
+    this.showToast(count);
+    // seq.subscribe((res: any) => {
+    //   // If the API returned a successful response, mark the user as logged in
+    //   if (res.status == 'success') {
+    //     this._loggedIn(res);
+    //   } else {
+    //   }
+    // }, err => {
+    //   console.error('ERROR', err);
+    // });
+
+    return count;
   }
 
+  showToast(count) {
+
+    this.toastOptions = { 
+      message: 'Count = ' + count.toString(),
+      duration : 5000
+
+    }
+    this.toast.create(this.toastOptions).present();
+
+  }
   /**
    * Send a POST request to our signup endpoint with the data
    * the user entered on the form.

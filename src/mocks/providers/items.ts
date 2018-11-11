@@ -2,59 +2,65 @@ import { Injectable } from '@angular/core';
 
 import { Item } from '../../models/item';
 
+import { Database } from '../providers/Database';
+
 @Injectable()
 export class Items {
   items: Item[] = [];
 
   defaultItem: any = {
-    "name": "Burt Bear",
+    "name": "Asset 1",
     "profilePic": "assets/img/speakers/bear.jpg",
-    "about": "Burt is a Bear.",
+    "about": "This is asset desc.",
   };
 
 
-  constructor() {
-    let items = [
-      {
-        "name": "Burt Bear",
-        "profilePic": "assets/img/speakers/bear.jpg",
-        "about": "Burt is a Bear."
-      },
-      {
-        "name": "Charlie Cheetah",
-        "profilePic": "assets/img/speakers/cheetah.jpg",
-        "about": "Charlie is a Cheetah."
-      },
-      {
-        "name": "Donald Duck",
-        "profilePic": "assets/img/speakers/duck.jpg",
-        "about": "Donald is a Duck."
-      },
-      {
-        "name": "Eva Eagle",
-        "profilePic": "assets/img/speakers/eagle.jpg",
-        "about": "Eva is an Eagle."
-      },
-      {
-        "name": "Ellie Elephant",
-        "profilePic": "assets/img/speakers/elephant.jpg",
-        "about": "Ellie is an Elephant."
-      },
-      {
-        "name": "Molly Mouse",
-        "profilePic": "assets/img/speakers/mouse.jpg",
-        "about": "Molly is a Mouse."
-      },
-      {
-        "name": "Paul Puppy",
-        "profilePic": "assets/img/speakers/puppy.jpg",
-        "about": "Paul is a Puppy."
-      }
-    ];
+  constructor(private database: Database) {
+    
+    this.items = this.database.users();
+    // let items = [
 
-    for (let item of items) {
-      this.items.push(new Item(item));
-    }
+
+      // {
+      //   "name": "Burt Bear",
+      //   "profilePic": "assets/img/speakers/bear.jpg",
+      //   "about": "Burt is a Bear."
+      // },
+      // {
+      //   "name": "Charlie Cheetah",
+      //   "profilePic": "assets/img/speakers/cheetah.jpg",
+      //   "about": "Charlie is a Cheetah."
+      // },
+      // {
+      //   "name": "Donald Duck",
+      //   "profilePic": "assets/img/speakers/duck.jpg",
+      //   "about": "Donald is a Duck."
+      // },
+      // {
+      //   "name": "Eva Eagle",
+      //   "profilePic": "assets/img/speakers/eagle.jpg",
+      //   "about": "Eva is an Eagle."
+      // },
+      // {
+      //   "name": "Ellie Elephant",
+      //   "profilePic": "assets/img/speakers/elephant.jpg",
+      //   "about": "Ellie is an Elephant."
+      // },
+      // {
+      //   "name": "Molly Mouse",
+      //   "profilePic": "assets/img/speakers/mouse.jpg",
+      //   "about": "Molly is a Mouse."
+      // },
+      // {
+      //   "name": "Paul Puppy",
+      //   "profilePic": "assets/img/speakers/puppy.jpg",
+      //   "about": "Paul is a Puppy."
+      // }
+    // ];
+
+    // for (let item of this.items) {
+    //   this.items.push(new Item(item));
+    // }
   }
 
   query(params?: any) {

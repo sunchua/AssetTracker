@@ -50,12 +50,13 @@
   "SIGNUP_BUTTON": "Sign up",
 
   "LIST_MASTER_TITLE": "Items",
-
-  "ITEM_CREATE_TITLE": "New Item",
+  "USER_LIST_TITLE": "Users",
+  "ITEM_CREATE_TITLE": "New User",
   "ITEM_CREATE_CHOOSE_IMAGE": "Add Image",
 
-  "ITEM_NAME_PLACEHOLDER": "Name",
-  "ITEM_ABOUT_PLACEHOLDER": "About",
+  "ITEM_NAME_PLACEHOLDER": "Part Name",
+  "ITEM_ABOUT_PLACEHOLDER": "Part Details",
+  "ITEM_NUMBER_PLACEHOLDER": "Part Number",
 
   "DONE_BUTTON": "Done",
   "CANCEL_BUTTON": "Cancel",
